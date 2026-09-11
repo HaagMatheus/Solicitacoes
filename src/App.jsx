@@ -8,6 +8,7 @@ function App() {
   ])
 
   const [novaTarefa, setNovaTarefa] = useState('')
+  const [filtro, setFiltro] = useState('todas')
 
   function adicionarTarefa() {
     if (novaTarefa.trim() === '') {
@@ -47,23 +48,51 @@ function App() {
     setTarefas(tarefasAtualizadas)
   }
 
+  const tarefasFiltradas = tarefas.filter((tarefa) => {
+    if (filtro === 'pendentes') {
+      return !tarefa.concluida
+    }
+
+    if (filtro === 'concluidas') {
+      return tarefa.concluida
+    }
+
+    return true
+  })
+
   return (
     <main>
       <h1>Solicitações</h1>
 
-      <input
-        type="text"
-        placeholder="Digite uma solicitação"
-        value={novaTarefa}
-        onChange={(event) => setNovaTarefa(event.target.value)}
-      />
+      <div>
+        <input
+          type="text"
+          placeholder="Digite uma solicitação"
+          value={novaTarefa}
+          onChange={(event) => setNovaTarefa(event.target.value)}
+        />
 
-      <button onClick={adicionarTarefa}>
-        Adicionar
-      </button>
+        <button onClick={adicionarTarefa}>
+          Adicionar
+        </button>
+      </div>
+
+      <div>
+        <button onClick={() => setFiltro('todas')}>
+          Todas
+        </button>
+
+        <button onClick={() => setFiltro('pendentes')}>
+          Pendentes
+        </button>
+
+        <button onClick={() => setFiltro('concluidas')}>
+          Concluídas
+        </button>
+      </div>
 
       <ul>
-        {tarefas.map((tarefa) => (
+        {tarefasFiltradas.map((tarefa) => (
           <li key={tarefa.id}>
             <input
               type="checkbox"
