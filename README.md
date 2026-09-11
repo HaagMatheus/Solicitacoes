@@ -1,6 +1,6 @@
 # Solicitações
 Um gerenciador de tarefas desenvolvido com React + Node.js, criado com o objetivo de praticar conceitos fundamentais da biblioteca, como componentes, estados, eventos e manipulação de listas.
-Funcionalidades:
+Funcionalidade:
 - Adicionar novas tarefas
 - Marcar tarefas como concluídas
 - Excluir tarefas
